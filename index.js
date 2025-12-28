@@ -10,7 +10,6 @@ mercadopago.configure({
   access_token: "APP_USR-5092177616989788-032918-8a2c64a1c2b19e0a2c390d87dd627026-1838287409"
 });
 
-// Rota para criar Pix
 app.post("/pix/criar", async (req, res) => {
   try {
     const { valor, descricao } = req.body;
@@ -22,9 +21,7 @@ app.post("/pix/criar", async (req, res) => {
       payer: { email: "cliente@teste.com" }
     });
 
-    const pixCopiaCola =
-      pagamento.body.point_of_interaction.transaction_data.qr_code;
-
+    const pixCopiaCola = pagamento.body.point_of_interaction.transaction_data.qr_code;
     const qrCodeBase64 = await QRCode.toDataURL(pixCopiaCola);
 
     res.json({
@@ -39,7 +36,6 @@ app.post("/pix/criar", async (req, res) => {
   }
 });
 
-// Rota para verificar status
 app.get("/pix/status/:id", async (req, res) => {
   try {
     const pagamento = await mercadopago.payment.get(req.params.id);
@@ -49,6 +45,4 @@ app.get("/pix/status/:id", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("API Pix rodando");
-});
+app.listen(3000, () => console.log("API Pix rodando na porta 3000"));
