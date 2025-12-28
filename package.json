@@ -1,0 +1,13 @@
+{
+  "name": "pix-api",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mercadopago": "^2.0.15",
+    "qrcode": "^1.5.4"
+  }
+}
